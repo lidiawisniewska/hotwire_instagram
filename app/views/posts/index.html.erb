@@ -1,14 +1,14 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
+<% if user_signed_in? %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Posts</h1>
-    <%= link_to 'New post', new_post_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="mb-12 text-center">
+    <%= link_to "+", new_post_path, class: "button px-6 py-4 text-4xl hover:bg-gray-300 bg-white hover:text-white text-gray-600 border-2", data: { turbo_frame: "modal" } %>
   </div>
 
-  <div id="posts" class="min-w-full">
-    <%= render @posts %>
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <%= render partial: "posts/post", locals: { post: post, user: current_user } %>
+    <% end %>
   </div>
-</div>
+<% else %>
+  <p class="text-center">Please sign in <%= link_to "here", new_user_session_path %>.</p>
+<% end %>

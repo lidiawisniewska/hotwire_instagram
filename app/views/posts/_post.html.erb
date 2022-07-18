@@ -1,17 +1,9 @@
-<div id="<%= dom_id post %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Body:</strong>
-    <%= post.body %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= post.user_id %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this post', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+<div class="instacard bg-white" id="post-<%= post.id %>">
+  <div class="instacard-header">
+    <span class="instacard-actions">···</span>
+    <div><%= image_tag "photo.jpeg", class: "instacard-profile-image" %></div>
+    <span class="instacard-profile-name"><%= post.user.username %></span>
+  </div>
+  <div class="instacard-body p-4 bg-white"><%= post.body %></div>
+  <div class="border"><%= image_tag post.file, class: "instacard-image" %></div>
 </div>
