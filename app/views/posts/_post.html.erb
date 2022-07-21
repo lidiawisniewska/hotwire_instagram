@@ -1,10 +1,10 @@
-<div class="instacard bg-white" id="post-<%= post.id %>">
-  <div class="instacard-header">
-    <span class="instacard-actions">···</span>
+<div class="card bg-white" id="post-<%= post.id %>">
+  <div class="card-header">
+    <span class="card-actions">···</span>
     <!-- user avatar will go here -->
-    <div><%= image_tag "", class: "instacard-profile-image" %></div>
-    <span class="instacard-profile-name"><%= post.user.username %></span>
+    <div><%= image_tag "", class: "card-profile-image" %></div>
+    <span class="card-profile-name"><%= post.user.username %></span>
   </div>
-  <div class="instacard-body p-4 bg-white"><%= post.body %></div>
-  <div class="border"><%= image_tag post.file, class: "instacard-image" %></div>
+  <div class="p-4 bg-white"><%= post.body %></div>
+  <div class="border"><%= image_tag post.file, class: "card-image" %></div>
 </div>
