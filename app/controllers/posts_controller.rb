@@ -13,15 +13,11 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    current_user.posts << @post
 
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+      format.turbo_stream
+      format.html { redirect_to root_path }
     end
   end
 
@@ -49,8 +45,7 @@ class PostsController < ApplicationController
   # end
 
   private
-    # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:body, :user_id)
+      params.require(:post).permit(:body, :file)
     end
 end
